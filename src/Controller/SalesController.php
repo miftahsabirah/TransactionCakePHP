@@ -61,7 +61,6 @@ class SalesController extends AppController
             $data = $this->request->getData();
             $transactionDate = $data['date'];
             
-            // Menggunakan prefix SAL untuk penjualan
             $transactionCode = $this->TransactionCode->generateTransactionCode($transactionDate, 'SAL', 'Sales');
 
             $sale = $this->Sales->patchEntity($sale, $data);
