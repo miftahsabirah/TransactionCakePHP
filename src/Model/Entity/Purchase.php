@@ -37,5 +37,7 @@ class Purchase extends Entity
         'quantity' => true,
         'customer' => true,
         'motorcycle' => true,
+        'created_by' => true,
+        'modified_by' => true,
     ];
 }

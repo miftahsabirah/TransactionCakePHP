@@ -17,6 +17,8 @@
                     <th><?= $this->Paginator->sort('customer_id') ?></th>
                     <th><?= $this->Paginator->sort('motorcycle_id') ?></th>
                     <th><?= $this->Paginator->sort('quantity') ?></th>
+                    <th><?= $this->Paginator->sort('created_by') ?></th>
+                    <th><?= $this->Paginator->sort('modified_by') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -29,6 +31,8 @@
                     <td><?= $purchase->has('customer') ? $this->Html->link($purchase->customer->name, ['controller' => 'Customers', 'action' => 'view', $purchase->customer->id]) : '' ?></td>
                     <td><?= $purchase->has('motorcycle') ? $this->Html->link($purchase->motorcycle->brand, ['controller' => 'Motorcycles', 'action' => 'view', $purchase->motorcycle->id]) : '' ?></td>
                     <td><?= $this->Number->format($purchase->quantity) ?></td>
+                    <td><?= $purchase->has('creator') ? $this->Html->link($purchase->creator->email, ['controller' => 'Users', 'action' => 'view', $purchase->creator->id]) : '' ?></td>
+                    <td><?= $purchase->has('modifier') ? $this->Html->link($purchase->modifier->email, ['controller' => 'Users', 'action' => 'view', $purchase->modifier->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $purchase->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $purchase->id]) ?>
@@ -50,3 +54,4 @@
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
+

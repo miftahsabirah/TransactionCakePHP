@@ -52,6 +52,21 @@ class PurchasesTable extends Table
             'foreignKey' => 'motorcycle_id',
             'joinType' => 'INNER',
         ]);
+        
+        // Asosiasi ke Users untuk created_by
+        $this->belongsTo('Creators', [
+            'className' => 'Users',
+            'foreignKey' => 'created_by',
+            'joinType' => 'LEFT',
+        ]);
+
+        // Asosiasi ke Users untuk modified_by
+        $this->belongsTo('Modifiers', [
+            'className' => 'Users',
+            'foreignKey' => 'modified_by',
+            'joinType' => 'LEFT',
+        ]);
+
     }
 
     /**
@@ -101,6 +116,14 @@ class PurchasesTable extends Table
         $rules->add($rules->existsIn('customer_id', 'Customers'), ['errorField' => 'customer_id']);
         $rules->add($rules->existsIn('motorcycle_id', 'Motorcycles'), ['errorField' => 'motorcycle_id']);
 
+        // Gunakan alias 'Creators' untuk created_by
+        $rules->add($rules->existsIn('created_by', 'Creators'), ['errorField' => 'created_by']);
+        
+        // Gunakan alias 'Modifiers' untuk modified_by
+        $rules->add($rules->existsIn('modified_by', 'Modifiers'), ['errorField' => 'modified_by']);
+        
         return $rules;
     }
+
+
 }
